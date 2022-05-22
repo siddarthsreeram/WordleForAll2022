@@ -1,17 +1,21 @@
 
 # only works on Python 3.6.8
+
+#imports necessary packages
 from time import sleep
 import speech_recognition as sr
 import pyttsx3
 from selenium import webdriver
 from selenium.webdriver.support.color import Color
 
+#creates varaibles that will be used to keep track of quantities
 MyText = '0'
 strCorrect='Correct'
 strElseWhere='Elsewhere'
 strIncorrect='Incorrect'
 entercount=0
 
+#strings that will be used to keep track of user's guesses for each Wordle row
 strRow1 = ''
 strRow2 = ''
 strRow3 = ''
@@ -19,6 +23,7 @@ strRow4 = ''
 strRow5 = ''
 strRow6 = ''
 
+#30 strings that remember the user's 30 character guesses' correct-status
 recall1 = ''
 recall2 = ''
 recall3 = ''
@@ -51,6 +56,7 @@ recall29 = ''
 recall30 = ''
 
 
+#the method that takes in a String as a paramter and returns the spoken String
 def SpeakText(command):
     # Initialize the engine
     engine = pyttsx3.init()
@@ -58,14 +64,16 @@ def SpeakText(command):
     engine.runAndWait()
 
 
-# get to wordleunlimted website
+# get to wordlegame website
 r = sr.Recognizer()
 driver = webdriver.Chrome()
 driver.get("https://wordlegame.org/")
 sleep(2)
 
 
+#a loop that keeps running while program is active
 while (True):
+    #a try statement to avoid cancelling the code due to noise detection errors
     try:
 
         # use the microphone as source for input.
@@ -93,6 +101,7 @@ while (True):
             print("Did you say " + MyText)
             SpeakText(MyText)
 
+     #except statments for possible errors in noise detection
     except sr.RequestError as e:
         print("Could not request results; {0}".format(e))
 
@@ -100,6 +109,7 @@ while (True):
         strError="Error, try again"
         SpeakText(strError)
 
+    #code for the alphabet and backspace and enter keys - xpaths are used to get the button on the site and if statments used for checking which guess this is
     # a
     if MyText == 'letter a':
         driver.find_element_by_xpath('//*[@id="game-wrapper"]/div[6]/div[2]/div[1]') \
@@ -588,6 +598,7 @@ while (True):
         sleep(3)
 
 
+    #checks if the hexcode of the guess is yellow, green, or grey (for misplaced, correct, and wrong letters) and Speaks the text accordingly
     # enter
     if MyText == 'enter the word':
         driver.find_element_by_xpath('//*[@id="game-wrapper"]/div[6]/div[3]/div[9]') \
@@ -955,6 +966,7 @@ while (True):
         entercount+=1  
         sleep(3)
 
+     #code for the recall functionality that states the word for a certain row and speaks the correct-status of the guess   
     if MyText=="recall line number 1" or MyText=="recall line number one":
       SpeakText(strRow1)
       SpeakText(recall1)

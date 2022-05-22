@@ -1,0 +1,26 @@
+## Inspiration
+We went into the hackathon wondering how we could incorporate the theme of Wordle into our project. Instantly, we noticed a flaw in Wordle that makes it so that not everyone will be able to play. This flaw is that everything in the game is visually based, and the visually impaired are unable to play at all because of this. Although there are programs that have text-to-speech generation for the blind, Wordle does not fall under those programs as it is in a game format and is not pure text. Due to this flaw, we wanted to make a program that would allow the visually impaired to play Wordle.
+
+## What it does
+Wordle4All allows for the blind to now play Wordle. Starting with the first row in Wordle, the program will ask for the person to audibly say their first five letters in the form “letter x”. For example a person would start by saying “letter a” and then wait until the program audibly asks for the next word. From there, they could complete any word such as AUDIO by saying “letter u”, “letter d”, “letter i”, and letter “o”. Then the person would need to say “enter the word” after saying 5 letters. The word would be entered and then the program would audibly tell the person what letters were in the right spot. This is done through the audible phrases “correct”, “incorrect”, and “elswhere”, corresponding to the colors on wordle as green, gray, and yellow respectively. From there, the visually impaired person would be able to formulate their next guesses on each line accordingly. Additionally, as it would be hard to remember each line’s audio playback, we have added a recall feature in which the person would need to say “recall line number x”. When this is done, whatever line was asked for by the person would be repeated along with the phrases “correct”, “incorrect”, and “elsewhere” for each letter. Using this program, the visually impaired person would be able to fully go through a game of wordle in the same format that anyone else would, but with the additional help of audio playback for their guesses. Overall, this eliminates the flaw that Wordle presents, as now the visually impaired will be able to hear whatever clues that are usually seen.  
+
+## How we built it
+The program was built completely in python, with the main components consisting of selenium and speech recognition. For the speech recognition part of the project, we used speech-to-text and text-to-speech code. In order to do this, google speech recognition was utilized in order to hear the letters that the user can input. Additionally, the speech recognition was also utilized to convert prompts such as “Speak now” into audio and present it to the user. For the selenium part of the project, we used chrome web driver in order to open wordlegame in chrome and start the program. After that, the xpath’s of the keyboard keys on wordle were utulized in order to automate the clicking of each key whenever the speech recognition was detected for a letter. For example, when the letter “a” was detected in the speech recognition, the xpath was called upon and a .click() command was used to click the key. Additionally, we used xpaths for the enter and backspace commands as well. From there, we used numerous if statements and define commands in order to 
+
+
+
+## Challenges we ran into
+-One challenge we ran into was that we could not use the official Wordle website, as the buttons on the screens were not able to be detected by our code using “xpaths.” We solved this by using wordlegame, which is a copy of the official Wordle game and allows for the user to play multiple Wordles a day, rather than just 1 per day. In this transition process between the two games, we had to change much of our code, including the xpaths for the two different websites, as well as the method by which we determined incorrect/correct answers.
+
+## Accomplishments that we're proud of
+-We are proud of our ability to learn a new computer science concept, speech-to-text recognition, and execute it within one day’s worth of coding. Even though we hadn’t previously learned the concept, we were able to use useful packages and find a way to implement them within our code to make our Wordle game voice-activated.
+
+-We are also proud of our ability to use selenium, a useful tool that makes python interact with chrome, to interact with the wordlegame website.
+
+## What we learned
+-We learned how to cater for others using programming as a tool. With WordleForAll, we were able to help those who are blind to play Wordle through the use of packages and imports like Selenium, PyAudio, and Google’s Speech Recognition software. We also learned the process by which programs are made, as we experienced the challenges, triumphs, and struggles of making/designing a tool.
+
+
+## What's next for WordleForAll
+We hope to make WordleForAll even more efficient in the time it takes to input and get results back to the user. Although relatively fast right now with the time constraint given for the project to be made, it can still be improved in order to create an even better experience for users. 
+
